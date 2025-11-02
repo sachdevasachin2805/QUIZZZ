@@ -1,0 +1,28 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>AI Quiz Chat</title>
+  <link rel="stylesheet" href="{{ url_for('static', filename='style.css') }}" />
+</head>
+<body>
+  <div class="chat-container">
+    <div class="chat-header">
+      <h2>🤖 AI Quiz Chat</h2>
+      <p>Ask any topic — I’ll create a quiz instantly!</p>
+    </div>
+
+    <div id="chat-box" class="chat-box"></div>
+
+    <div class="chat-input">
+      <input type="text" id="topicInput" placeholder="Enter a topic..." />
+      <!-- ❌ Remove onclick attribute -->
+      <button id="generateBtn">Generate</button>
+    </div>
+  </div>
+
+  <!-- ✅ Script must load LAST -->
+  <script src="{{ url_for('static', filename='script.js') }}"></script>
+</body>
+</html>
