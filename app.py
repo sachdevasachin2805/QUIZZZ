@@ -7,7 +7,7 @@ app = Flask(__name__)
 genai.configure(api_key="AIzaSyB1lCzVrKJ42ew4p6nbSOacfCp0OYUgArA")  # replace with your key
 
 # Load the model
-model = genai.GenerativeModel("gemini-1.5-flash")
+model = genai.GenerativeModel(model_name="gemini-1.5-flash-latest")
 
 @app.route("/")
 def home():
@@ -25,12 +25,12 @@ def generate_quiz():
             "and mention the correct answer clearly."
         )
 
-        response = model.generate_content(prompt)
-        quiz_text = response.text.strip()
-
-        return jsonify({"quiz": quiz_text})
+       response = model.generate_content([prompt])
+quiz_text = response.candidates[0].content.parts[0].text
+return jsonify({"quiz": quiz_text})
     except Exception as e:
         return jsonify({"error": str(e)})
 
 if __name__ == "__main__":
+
     app.run(debug=True)
